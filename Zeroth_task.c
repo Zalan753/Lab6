@@ -30,5 +30,12 @@ int main()
     {
         printf("%dth letter='%c', code=%d\n", i, str2[i], str2[i]);
     }
+    printf("%d\n", strlen(str1));
+    printf("%d\n", strcmp(str1, str2));
+    printf("%d\n", strcmp(strcpy(str1, str2),str2));
+    char str3[strlen(str1+1)+strlen(str2+1)];
+    str3 = "\0";
+    strcpy(str3, strcat(str1, str2));
+    printf("%s\n", str3);
     return 0;
 }

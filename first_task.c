@@ -13,6 +13,7 @@ Find an unfinished program below that contains the appropriate types and the abo
 */
 
 #include <stdio.h>
+#include <string.h>
 
 typedef struct Date
 { // Create a stuct definition, not an instance, it is a type. With typedef we give it a new name (struct Date-->Date
@@ -47,16 +48,31 @@ int main()
         {"Duck, Ling", {1979, 6, 10}, 5},
         {"Mac, Donald", {1992, 4, 5}, 4},
     };
-    /* name of competitor 0 - printf %s */
-    /* rank of competitor 2 */
-    /* birth date of competitor 4, use the given function */
-    /* the first letter of the name of competitor 1 (a string is an array of characters) */
-    /* is competitor 1 among the best three? yes/no, may use ?: operator */
-    /* is competitor 4 faster than competitor 3? */
-    /* was competitor 1 born in the same year as competitor 2? */
-    /* complete the Competitor_print() function,
-     * then print all data of competitor 1 */
-    /* Check if Abnorm, Al was competeing (using strcmp())
+    Competitor_print(competitors[1]);
+    printf("%s\n", competitors[0].name);
+    printf("%d\n", competitors[4].rank);
+    Date_print(competitors[4].birth);
+    printf("\n%c\n", competitors[1].name[0]);
+    (competitors[1].rank < 4)?
+        printf("Yes\n"):
+        printf("No\n");
+    (competitors[4].rank > competitors[3].rank)?
+        printf("Yes\n"):
+        printf("No\n");
+    (competitors[1].birth.year == competitors[2].birth.year)?
+        printf("Yes\n"):
+        printf("No\n");
+    Competitor_print(competitors[1]);
+    for (int i = 0; i < 6;i++){
+        if (strcmp(competitors[i].name,"Abnorm, Al") == 0){
+            printf("Yes\n");  
+        }
+       
+    }
+    competitors[5] = Competitor_read();
+    for (int i = 0; i < 6; i++){
+        Competitor_print(competitors[i]);
+    }
     /* Create a function to add a new competitor according to user's input (using scanf)*/
     /*Add a new competitor as 6th element (index 5)*/
     /* at last print all data of all competitors. */
@@ -65,15 +81,26 @@ int main()
 }
 void Date_print(Date d)
 {
-    /* print year, month and day */
+    printf("%d.%d.%d", d.year, d.month, d.day);
 }
 
 void Competitor_print(Competitor c)
 {
-    /* print all data of the competitor */
+    printf("%s\t", c.name);
+    Date_print(c.birth);
+    printf("\t%d\n", c.rank);
 }
 
 Competitor Competitor_read()
 {
-    /* prompt the user the give details of a new competitor, create the new competitor and return with that!*/
+    Competitor a;
+    printf("Give competitors name:\n");
+    scanf("%s", &a.name);
+    printf("Give competitors birth date:\n");
+    scanf("%d", &a.birth.year);
+    scanf("%d", &a.birth.month);
+    scanf("%d", &a.birth.day);
+    printf("Give competitors rank:\n");
+    scanf("%d", &a.rank);
+    return a;
 }
